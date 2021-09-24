@@ -288,6 +288,8 @@ func compileInline(n *blackfriday.Node) (string, error) {
 			str := strings.Replace(string(c.Literal), "\n", " ", -1)
 			b.WriteString(str)
 			b.WriteByte('`')
+		case blackfriday.Hardbreak:
+			b.WriteString(c.String())
 		default:
 			return "", fmt.Errorf("Unsupported node type %s ignored", c.Type)
 		}
